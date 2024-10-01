@@ -1,0 +1,52 @@
+import java.util.Random;
+import java.util.Scanner;
+        
+public class MathAssignment {
+
+    public static void main(String[] args) {
+    Random rand = new Random();
+    
+    // task 1: generate random number from 1-90 inclusive
+    int number = rand.nextInt(91);
+    double sine = Math.sin(Math.toRadians(number));
+    double cosine = Math.cos(Math.toRadians(number));
+    double tangent = Math.tan(Math.toRadians(number));
+    
+    System.out.printf("Number: %d Sine: %.3f Cosine: %.3f Tangent: %.3f%n", number, sine, cosine, tangent);
+    
+    // task 2: generate the radius of a circle and calculate its area and volume
+    double radius = 1.0 + (20.0 - 1.0) * rand.nextDouble();
+    double area = Math.PI * Math.pow( radius, 2);
+    double volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
+    System.out.printf("Radius: %.3f Area: %.3f Volume: %.3f%n", radius, area, volume);
+    
+    //task 3: number with square root, natural log, and log base 10 
+    double number3 = rand.nextDouble(100000000.0 - 1000.0) + 1000.0;
+    double sqrt = Math.sqrt(number3);
+    double natLog = Math.log(number3);
+    double log10 = Math.log10(number3);
+    System.out.printf("Number: %.5f Square Root: %.5f Natural Log: %.5f Log Base 10: %.5f%n", number3, sqrt, natLog, log10);
+   
+    //task 4: 
+    double number4 = number3;
+    double speedLight = 299792458 ;
+    double mass = (number4 / Math.pow(speedLight,2));
+    System.out.println("Mass: " + mass + " grams");
+    //task 5:
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Enter a Real Number: ");
+    double realNumber = scanner.nextDouble();
+    System.out.println("Enter an Integer: ");
+    double integer = scanner.nextInt();
+    System.out.println("Enter decimal Places to Round to: ");
+    double decPlace = scanner.nextInt();
+    double power = Math.pow(realNumber,integer);
+    System.out.printf("Result: %" + decPlace + "f%n", power);
+    
+    
+    
+    }
+   
+}
+    
+    
