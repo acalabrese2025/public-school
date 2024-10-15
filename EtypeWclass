@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class EtypeWclass {
+        enum Day {
+            MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+        }
+        enum Month {
+            JANUARY, FEBUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+        }
+    public static void main(String[] args) {
+        for (Day day: Day.values()){
+        System.out.println(day.ordinal()+ 1 + ":" + day);
+        
+ 
+      
+        for (Month month: Month.values()){
+        System.out.println(month.ordinal()+ 1 + ":" + month);
+        
+        
+    }
+    }
+    }
+}
