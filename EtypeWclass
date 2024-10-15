@@ -16,7 +16,16 @@ public class EtypeWclass {
         for (Month month: Month.values()){
         System.out.println(month.ordinal()+ 1 + ":" + month);
         
+          Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your CCHS username (including graduation year): ");
+        String username = scanner.nextLine();
         
+        String yearString = username.substring(username.length() - 4);
+        int graduationYear = Integer.parseInt(yearString);
+        
+        System.out.println("Your graduation year: " + graduationYear);
+        System.out.println("The year after your graduation year: " + (graduationYear + 1));
+        System.out.println("In computer language, you graduate in: " + Integer.toBinaryString(graduationYear));
     }
     }
     }
