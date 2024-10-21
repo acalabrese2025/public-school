@@ -1,4 +1,4 @@
-public class Car {
+public class Anatomyofclass {
     private String carBrand;
     private int enginePower; // Horsepower
     private double maxSpeed; // MPH
@@ -49,8 +49,7 @@ public class Car {
     @Override
     public String toString() {
         return "Car [Brand=" + carBrand + ", Engine Power=" + enginePower + " HP, Max Speed=" + maxSpeed + " MPH, Price=$" + price + "]";
-    }
-}
+    }      
 
 // Main class to test the Car class
 public class Main {
@@ -67,4 +66,5 @@ public class Main {
         System.out.println(bmwI8);
         System.out.println(teslaModel3);
     }
+}
 }
