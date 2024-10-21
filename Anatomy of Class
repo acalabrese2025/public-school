@@ -1,5 +1,5 @@
-public class Anatomyofclass {
-    private String carBrand;
+public class Car {
+private String carBrand;
     private int enginePower; // Horsepower
     private double maxSpeed; // MPH
     private double price;    // $
@@ -68,3 +68,4 @@ public class Main {
     }
 }
 }
+ 
