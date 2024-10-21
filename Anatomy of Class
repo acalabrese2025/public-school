@@ -1,70 +1,53 @@
-public class Car {
-    private String carBrand;
-    private int enginePower; // Horsepower
-    private double maxSpeed; // MPH
-    private double price;    // $
-
-    // Constructor
-    public Car(String carBrand, int enginePower, double maxSpeed, double price) {
-        this.carBrand = carBrand;
-        this.enginePower = enginePower;
-        this.maxSpeed = maxSpeed;
-        this.price = price;
-    }
-
-    // Getter and Setter methods
-    public String getCarBrand() {
-        return carBrand;
-    }
-
-    public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
-    }
-
-    public int getEnginePower() {
-        return enginePower;
-    }
-
-    public void setEnginePower(int enginePower) {
-        this.enginePower = enginePower;
-    }
-
-    public double getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setMaxSpeed(double maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    // toString method
-    @Override
-    public String toString() {
-        return "Car [Brand=" + carBrand + ", Engine Power=" + enginePower + " HP, Max Speed=" + maxSpeed + " MPH, Price=$" + price + "]";
-    }
-}
-
-// Main class to test the Car class
 public class Main {
-    public static void main(String[] args) {
-        // Create car objects
-        Car vwBug = new Car("VW Bug", 120, 100.0, 20000.0);
-        Car toyotaPrius = new Car("Toyota Prius", 121, 112.0, 24000.0);
-        Car bmwI8 = new Car("BMW i8", 369, 155.0, 147500.0);
-        Car teslaModel3 = new Car("Tesla Model 3", 283, 162.0, 39990.0);
+    // Car class defined within the Main class
+    static class Car {
+        private String carBrand;
+        private int enginePower; // Horsepower
+        private double maxSpeed; // MPH
+        private double price;    // $
 
-        // Print car details
-        System.out.println(vwBug);
-        System.out.println(toyotaPrius);
-        System.out.println(bmwI8);
-        System.out.println(teslaModel3);
-    }
-}
+        // Constructor
+        public Car(String carBrand, int enginePower, double maxSpeed, double price) {
+            this.carBrand = carBrand;
+            this.enginePower = enginePower;
+            this.maxSpeed = maxSpeed;
+            this.price = price;
+        }
+
+        // Getter and Setter methods
+        public String getCarBrand() {
+            return carBrand;
+        }
+
+        public void setCarBrand(String carBrand) {
+            this.carBrand = carBrand;
+        }
+
+        public int getEnginePower() {
+            return enginePower;
+        }
+
+        public void setEnginePower(int enginePower) {
+            this.enginePower = enginePower;
+        }
+
+        public double getMaxSpeed() {
+            return maxSpeed;
+        }
+
+        public void setMaxSpeed(double maxSpeed) {
+            this.maxSpeed = maxSpeed;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
+
+        // toString method
+        @Override
+        public String toString() {
+            return "Car [Brand=" + carBrand + ", Engine Power=
