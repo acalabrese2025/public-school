@@ -1,5 +1,5 @@
 public class Car {
-private String carBrand;
+    private String carBrand;
     private int enginePower; // Horsepower
     private double maxSpeed; // MPH
     private double price;    // $
@@ -49,7 +49,8 @@ private String carBrand;
     @Override
     public String toString() {
         return "Car [Brand=" + carBrand + ", Engine Power=" + enginePower + " HP, Max Speed=" + maxSpeed + " MPH, Price=$" + price + "]";
-    }      
+    }
+}
 
 // Main class to test the Car class
 public class Main {
@@ -67,5 +68,3 @@ public class Main {
         System.out.println(teslaModel3);
     }
 }
-}
- 
