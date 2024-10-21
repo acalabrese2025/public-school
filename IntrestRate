@@ -1,57 +1,76 @@
+
 import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // Create a Scanner object for user input
         Scanner scanner = new Scanner(System.in);
 
-        // Input amount
-        System.out.println("Enter the financial amount (e.g., 1000000 for $1,000,000): ");
+        // Prompt user for financial amount
+        System.out.print("Enter the financial amount (e.g., $1,000,000): ");
         double amount = scanner.nextDouble();
 
-        // Input number of months
-        System.out.println("Enter the number of months for repayment: ");
+        // Create an instance of InterestRateCalculator
+        InterestRateCalculator calculator = new InterestRateCalculator();
+
+        // Calculate total payment with interest
+        double totalPayment = calculator.calculateTotalPayment(amount);
+        
+        // Prompt user for number of months for repayment
+        System.out.print("Enter the number of months for repayment: ");
         int months = scanner.nextInt();
 
-        // Create InterestRateCalculator object and calculate payments
-        InterestRateCalculator calculator = new InterestRateCalculator(amount, months);
-        calculator.calculatePayments();
+        // Calculate and display monthly payments
+        calculator.displayMonthlyPayments(amount, months);
 
-        // Output the total amount paid
-        System.out.println("Total Amount Paid: " + NumberFormat.getCurrencyInstance().format(calculator.getTotalPaid()));
+        // Close the scanner
+        scanner.close();
     }
 }
 
 class InterestRateCalculator {
+    // Public constant for interest rate
     public static final double RATE = 0.035; // 3.5% interest rate
-    private double amount;
-    private int months;
-    private double totalPaid;
 
-    public InterestRateCalculator(double amount, int months) {
-        this.amount = amount;
-        this.months = months;
-        this.totalPaid = 0;
+    // Private variables for internal calculations
+    private double remainingAmount;
+
+    // Method to calculate total payment including interest
+    public double calculateTotalPayment(double amount) {
+        remainingAmount = amount;
+        return remainingAmount * (1 + RATE);
     }
 
-    // Method to calculate compound interest payments
-    public void calculatePayments() {
-        double remainingAmount = amount;
+    // Method to display monthly payments
+    public void displayMonthlyPayments(double amount, int months) {
+        double monthlyPayment = amount / months;
+
+        // Formatting for currency output
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+        NumberFormat percentFormat = NumberFormat.getPercentInstance();
+        percentFormat.setMinimumFractionDigits(1);
+        percentFormat.setMaximumFractionDigits(1);
+
+        double totalPaid = 0;
+
+        System.out.println("\nMonthly Payment Schedule:");
+        System.out.println("Month | Payment | Total Paid So Far");
+
         for (int month = 1; month <= months; month++) {
-            double interest = remainingAmount * RATE;
-            double monthlyPayment = remainingAmount / (months - month + 1);
-            double totalMonthlyPayment = monthlyPayment + interest;
+            // Calculate interest for the current month
+            double interest = remainingAmount * RATE / 12; // Monthly interest
+            double currentPayment = monthlyPayment + interest; // Monthly payment including interest
+
+            // Update total paid
+            totalPaid += currentPayment;
+
+            // Output the month, payment, and total paid
+            System.out.printf("%-6d | %s | %s\n", month, currencyFormat.format(currentPayment), currencyFormat.format(totalPaid));
+
+            // Update remaining amount
             remainingAmount -= monthlyPayment;
-
-            totalPaid += totalMonthlyPayment;
-            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
-            System.out.println("Month: " + month + ", Payment: " + currencyFormat.format(totalMonthlyPayment) +
-                    ", Total Paid So Far: " + currencyFormat.format(totalPaid));
+            remainingAmount += interest; // Add interest to remaining amount
         }
-    }
-
-    // Getter for totalPaid
-    public double getTotalPaid() {
-        return totalPaid;
     }
 }
