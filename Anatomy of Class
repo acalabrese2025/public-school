@@ -50,4 +50,21 @@ public class Main {
         // toString method
         @Override
         public String toString() {
-            return "Car [Brand=" + carBrand + ", Engine Power=
+            return "Car [Brand=" + carBrand + ", Engine Power=" + enginePower + " HP, Max Speed=" + maxSpeed + " MPH, Price=$" + price + "]";
+        }
+    }
+
+    public static void main(String[] args) {
+        // Create car objects
+        Car vwBug = new Car("VW Bug", 120, 100.0, 20000.0);
+        Car toyotaPrius = new Car("Toyota Prius", 121, 112.0, 24000.0);
+        Car bmwI8 = new Car("BMW i8", 369, 155.0, 147500.0);
+        Car teslaModel3 = new Car("Tesla Model 3", 283, 162.0, 39990.0);
+
+        // Print car details
+        System.out.println(vwBug);
+        System.out.println(toyotaPrius);
+        System.out.println(bmwI8);
+        System.out.println(teslaModel3);
+    }
+}
