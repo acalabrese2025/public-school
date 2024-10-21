@@ -1,0 +1,57 @@
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input amount
+        System.out.println("Enter the financial amount (e.g., 1000000 for $1,000,000): ");
+        double amount = scanner.nextDouble();
+
+        // Input number of months
+        System.out.println("Enter the number of months for repayment: ");
+        int months = scanner.nextInt();
+
+        // Create InterestRateCalculator object and calculate payments
+        InterestRateCalculator calculator = new InterestRateCalculator(amount, months);
+        calculator.calculatePayments();
+
+        // Output the total amount paid
+        System.out.println("Total Amount Paid: " + NumberFormat.getCurrencyInstance().format(calculator.getTotalPaid()));
+    }
+}
+
+class InterestRateCalculator {
+    public static final double RATE = 0.035; // 3.5% interest rate
+    private double amount;
+    private int months;
+    private double totalPaid;
+
+    public InterestRateCalculator(double amount, int months) {
+        this.amount = amount;
+        this.months = months;
+        this.totalPaid = 0;
+    }
+
+    // Method to calculate compound interest payments
+    public void calculatePayments() {
+        double remainingAmount = amount;
+        for (int month = 1; month <= months; month++) {
+            double interest = remainingAmount * RATE;
+            double monthlyPayment = remainingAmount / (months - month + 1);
+            double totalMonthlyPayment = monthlyPayment + interest;
+            remainingAmount -= monthlyPayment;
+
+            totalPaid += totalMonthlyPayment;
+            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+            System.out.println("Month: " + month + ", Payment: " + currencyFormat.format(totalMonthlyPayment) +
+                    ", Total Paid So Far: " + currencyFormat.format(totalPaid));
+        }
+    }
+
+    // Getter for totalPaid
+    public double getTotalPaid() {
+        return totalPaid;
+    }
+}
