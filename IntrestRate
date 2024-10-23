@@ -1,76 +1,54 @@
 
-import java.text.NumberFormat;
 import java.util.Scanner;
+import java.text.NumberFormat;
 
-public class Main {
+public class IntrestRate {
+
+    
     public static void main(String[] args) {
-        // Create a Scanner object for user input
-        Scanner scanner = new Scanner(System.in);
-
-        // Prompt user for financial amount
-        System.out.print("Enter the financial amount (e.g., $1,000,000): ");
-        double amount = scanner.nextDouble();
-
-        // Create an instance of InterestRateCalculator
-        InterestRateCalculator calculator = new InterestRateCalculator();
-
-        // Calculate total payment with interest
-        double totalPayment = calculator.calculateTotalPayment(amount);
+        InterestCalc dollars = new InterestCalc();
+        System.out.println("Enter Financial Amount: ");
+        Scanner scan1 = new Scanner(System.in);
+        double amount = scan1.nextDouble();
         
-        // Prompt user for number of months for repayment
-        System.out.print("Enter the number of months for repayment: ");
-        int months = scanner.nextInt();
-
-        // Calculate and display monthly payments
-        calculator.displayMonthlyPayments(amount, months);
-
-        // Close the scanner
-        scanner.close();
+        System.out.println("Number of Months: ");
+        Scanner scan2 = new Scanner(System.in);             
+        double months = scan2.nextDouble();
+        
+        System.out.println("Please enter monthly payment wanted: ");
+        Scanner scan3 = new Scanner(System.in);             
+        double monthsWanted = scan3.nextDouble();
+        
+        dollars.setMoney(amount);
+        dollars.setMonths(months);
+        dollars.setmonthsWanted(monthsWanted);
+        
+        System.out.println(dollars);
+        
     }
 }
 
-class InterestRateCalculator {
-    // Public constant for interest rate
-    public static final double RATE = 0.035; // 3.5% interest rate
-
-    // Private variables for internal calculations
-    private double remainingAmount;
-
-    // Method to calculate total payment including interest
-    public double calculateTotalPayment(double amount) {
-        remainingAmount = amount;
-        return remainingAmount * (1 + RATE);
+class InterestCalc {
+        private final double RATE = .035;// set intrest rate at 3.5%
+        private double inAmmount;
+        private double inMonths;
+        private double monthsWanted;
+        
+    public void setMoney (double moneyIn) {
+        inAmmount = moneyIn;
+    }   
+    public void setMonths (double monthsIn) {
+        inMonths = monthsIn;
+    }    
+    
+    public void setMonthsWanted (int inMonthsWanted){
+        monthsWanted = inMonthsWanted;
     }
-
-    // Method to display monthly payments
-    public void displayMonthlyPayments(double amount, int months) {
-        double monthlyPayment = amount / months;
-
-        // Formatting for currency output
-        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
-        NumberFormat percentFormat = NumberFormat.getPercentInstance();
-        percentFormat.setMinimumFractionDigits(1);
-        percentFormat.setMaximumFractionDigits(1);
-
-        double totalPaid = 0;
-
-        System.out.println("\nMonthly Payment Schedule:");
-        System.out.println("Month | Payment | Total Paid So Far");
-
-        for (int month = 1; month <= months; month++) {
-            // Calculate interest for the current month
-            double interest = remainingAmount * RATE / 12; // Monthly interest
-            double currentPayment = monthlyPayment + interest; // Monthly payment including interest
-
-            // Update total paid
-            totalPaid += currentPayment;
-
-            // Output the month, payment, and total paid
-            System.out.printf("%-6d | %s | %s\n", month, currencyFormat.format(currentPayment), currencyFormat.format(totalPaid));
-
-            // Update remaining amount
-            remainingAmount -= monthlyPayment;
-            remainingAmount += interest; // Add interest to remaining amount
-        }
+    
+    public String toString(){
+        double result = ((inAmmount/inMonths)*Math.pow((1 + RATE), monthsWanted));
+        String realResult = "Your Monthly Payment for month " + monthsWanted + "is " + result;
+        return realResult;
+        
     }
-}
+    
