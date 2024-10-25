@@ -1,0 +1,56 @@
+import java.util.Scanner;
+import java.text.NumberFormat;
+
+public class Main {
+    public static void main(String[] args) {
+        // Scanner for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt user for financial amount
+        System.out.println("Enter Financial Amount (e.g., 1000000 for $1,000,000): ");
+        double amount = scanner.nextDouble();
+
+        // Call method to add interest to the amount and get back the new amount
+        InterestRateCalculator calculator = new InterestRateCalculator();
+        double amountWithInterest = calculator.addInterest(amount);
+
+        // Prompt user for number of months for repayment
+        System.out.println("Enter Number of Months for Repayment: ");
+        int months = scanner.nextInt();
+
+        // Calculate and display monthly payments with interest
+        calculator.calculatePayments(amountWithInterest, months);
+    }
+}
+
+class InterestRateCalculator {
+    public static final double RATE = 0.035; // 3.5% interest rate
+    private double amount;
+    private int months;
+
+    // Method to add interest to the initial amount
+    public double addInterest(double amount) {
+        return amount * (1 + RATE);
+    }
+
+    // Method to calculate and display compound interest payments
+    public void calculatePayments(double amount, int months) {
+        this.amount = amount;
+        this.months = months;
+        double remainingAmount = amount;
+        double totalPaid = 0;
+
+        for (int month = 1; month <= months; month++) {
+            double interest = remainingAmount * RATE;
+            double monthlyPayment = remainingAmount / (months - month + 1);
+            double totalMonthlyPayment = monthlyPayment + interest;
+            remainingAmount -= monthlyPayment;
+
+            totalPaid += totalMonthlyPayment;
+
+            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+            System.out.println("Month: " + month + ", Payment: " + currencyFormat.format(totalMonthlyPayment) +
+                    ", Total Paid So Far: " + currencyFormat.format(totalPaid));
+        }
+    }
+}
