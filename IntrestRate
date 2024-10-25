@@ -1,54 +1,60 @@
-
 import java.util.Scanner;
 import java.text.NumberFormat;
 
-public class IntrestRate {
-
-    
+public class InterestRate {
     public static void main(String[] args) {
         InterestCalc dollars = new InterestCalc();
+        Scanner scanner = new Scanner(System.in);
+
+        // Input amount
         System.out.println("Enter Financial Amount: ");
-        Scanner scan1 = new Scanner(System.in);
-        double amount = scan1.nextDouble();
-        
+        double amount = scanner.nextDouble();
+
+        // Input number of months
         System.out.println("Number of Months: ");
-        Scanner scan2 = new Scanner(System.in);             
-        double months = scan2.nextDouble();
-        
+        double months = scanner.nextDouble();
+
+        // Input monthly payment wanted
         System.out.println("Please enter monthly payment wanted: ");
-        Scanner scan3 = new Scanner(System.in);             
-        double monthsWanted = scan3.nextDouble();
-        
+        double monthsWanted = scanner.nextDouble();
+
+        // Set values in InterestCalc object
         dollars.setMoney(amount);
         dollars.setMonths(months);
-        dollars.setmonthsWanted(monthsWanted);
-        
+        dollars.setMonthsWanted(monthsWanted);
+
+        // Print result
         System.out.println(dollars);
-        
     }
 }
 
 class InterestCalc {
-        private final double RATE = .035;// set intrest rate at 3.5%
-        private double inAmmount;
-        private double inMonths;
-        private double monthsWanted;
-        
-    public void setMoney (double moneyIn) {
-        inAmmount = moneyIn;
-    }   
-    public void setMonths (double monthsIn) {
+    private final double RATE = 0.035; // set interest rate at 3.5%
+    private double inAmount;
+    private double inMonths;
+    private double monthsWanted;
+
+    // Set the amount of money
+    public void setMoney(double moneyIn) {
+        inAmount = moneyIn;
+    }
+
+    // Set the number of months
+    public void setMonths(double monthsIn) {
         inMonths = monthsIn;
-    }    
-    
-    public void setMonthsWanted (int inMonthsWanted){
+    }
+
+    // Set the number of months wanted
+    public void setMonthsWanted(double inMonthsWanted) {
         monthsWanted = inMonthsWanted;
     }
-    
-    public String toString(){
-        double result = ((inAmmount/inMonths)*Math.pow((1 + RATE), monthsWanted));
-        String realResult = "Your Monthly Payment for month " + monthsWanted + "is " + result;
+
+    // Calculate and return the result as a string
+    @Override
+    public String toString() {
+        double result = ((inAmount / inMonths) * Math.pow((1 + RATE), monthsWanted));
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+        String realResult = "Your Monthly Payment for month " + monthsWanted + " is " + currencyFormat.format(result);
         return realResult;
-        
     }
-    
+}
