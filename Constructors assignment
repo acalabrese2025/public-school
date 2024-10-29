@@ -1,0 +1,79 @@
+public class Course {
+    private String courseTitle;
+    private String courseCode;
+    private double pointsTotal;
+    private String instructorName;
+
+    // Full constructor
+    public Course(String courseTitle, String courseCode, double pointsTotal, String instructorName) {
+        this.courseTitle = courseTitle;
+        this.courseCode = courseCode;
+        this.pointsTotal = pointsTotal;
+        this.instructorName = instructorName;
+    }
+
+    // Constructor with course name only
+    public Course(String courseTitle) {
+        this.courseTitle = courseTitle;
+    }
+
+    // Getters
+    public String getCourseTitle() {
+        return courseTitle;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public double getPointsTotal() {
+        return pointsTotal;
+    }
+
+    public String getInstructorName() {
+        return instructorName;
+    }
+
+    // Setters
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
+    public void setPointsTotal(double pointsTotal) {
+        this.pointsTotal = pointsTotal;
+    }
+
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Course Title: " + courseTitle + "\n" +
+               "Course Code: " + courseCode + "\n" +
+               "Total Points: " + pointsTotal + "\n" +
+               "Instructor: " + instructorName + "\n";
+    }
+
+    // Driver class to test the Course class
+    public static void main(String[] args) {
+        // Create course objects
+        Course csCourse = new Course("Computer Science", "CS101", 100, "Dr. Smith");
+        Course mathCourse = new Course("Mathematics");
+        mathCourse.setCourseCode("MATH202");
+        mathCourse.setPointsTotal(85);
+        mathCourse.setInstructorName("Prof. Johnson");
+
+        Course physicsCourse = new Course("Physics", "PHY303", 90, "Dr. Adams");
+
+        // Print course details
+        System.out.println(csCourse);
+        System.out.println(mathCourse);
+        System.out.println(physicsCourse);
+    }
+}
