@@ -1,75 +1,76 @@
-public class Course {
-    private String courseTitle;
-    private String courseCode;
-    private double pointsTotal;
-    private String instructorName;
+public class ConstructorsAsign {
 
-    // Full constructor
-    public Course(String courseTitle, String courseCode, double pointsTotal, String instructorName) {
-        this.courseTitle = courseTitle;
-        this.courseCode = courseCode;
-        this.pointsTotal = pointsTotal;
-        this.instructorName = instructorName;
+        private String title;
+        private String code;
+        private double points;
+        private String instructor;
+        
+        //constructor
+        public ConstructorsAsign(String title, String code, double points, String instructor) {
+        this.title = title;
+        this.code = code;
+        this.points = points;
+        this.instructor = instructor;
     }
-
+        
     // Constructor with course name only
-    public Course(String courseTitle) {
-        this.courseTitle = courseTitle;
+    public ConstructorsAsign(String title) {
+        this.title = title;
     }
 
     // Getters
-    public String getCourseTitle() {
-        return courseTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public String getCourseCode() {
-        return courseCode;
+    public String getCode() {
+        return code;
     }
 
-    public double getPointsTotal() {
-        return pointsTotal;
+    public double getPoints() {
+        return points;
     }
 
-    public String getInstructorName() {
-        return instructorName;
+    public String getInstructor() {
+        return instructor;
     }
 
     // Setters
-    public void setCourseTitle(String courseTitle) {
-        this.courseTitle = courseTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
+    public void setCourseCode(String code) {
+        this.code = code;
     }
 
-    public void setPointsTotal(double pointsTotal) {
-        this.pointsTotal = pointsTotal;
+    public void setPoints(double points) {
+        this.points = points;
     }
 
-    public void setInstructorName(String instructorName) {
-        this.instructorName = instructorName;
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
     }
 
     // toString method
     @Override
     public String toString() {
-        return "Course Title: " + courseTitle + "\n" +
-               "Course Code: " + courseCode + "\n" +
-               "Total Points: " + pointsTotal + "\n" +
-               "Instructor: " + instructorName + "\n";
+        return "Course Title: " + title + "\n" +
+               "Course Code: " + code + "\n" +
+               "Total Points: " + points + "\n" +
+               "Instructor: " + instructor + "\n";
     }
 
     // Driver class to test the Course class
     public static void main(String[] args) {
         // Create course objects
-        Course csCourse = new Course("Computer Science", "CS101", 100, "Dr. Smith");
-        Course mathCourse = new Course("Mathematics");
-        mathCourse.setCourseCode("MATH202");
-        mathCourse.setPointsTotal(85);
-        mathCourse.setInstructorName("Prof. Johnson");
+        ConstructorsAsign csCourse = new ConstructorsAsign("Computer Science", "CS AP A", 100, "Mr. Nelson");
+        ConstructorsAsign mathCourse = new ConstructorsAsign("Mathematics");
+        mathConstructorsAsign.setCourseCode("AP Calc BC");
+        mathConstructorsAsign.setPointsTotal(85);
+        mathConstructorsAsign.setInstructorName("Dr. Dahms");
 
-        Course physicsCourse = new Course("Physics", "PHY303", 90, "Dr. Adams");
+        ConstructorsAsign physicsCourse = new ConstructorsAsign("Physics", "AP Physics 1", 90, "Ms. Raphie");
 
         // Print course details
         System.out.println(csCourse);
@@ -77,3 +78,4 @@ public class Course {
         System.out.println(physicsCourse);
     }
 }
+
