@@ -64,13 +64,13 @@ public class ConstructorsAsign {
     // Driver class to test the Course class
     public static void main(String[] args) {
         // Create course objects
-        ConstructorsAsign csCourse = new ConstructorsAsign("Computer Science", "CS AP A", 100, "Mr. Nelson");
+        ConstructorsAsign csCourse = new ConstructorsAsign("Computer Science", "CS AP A", 5.0, "Mr. Nelson");
         ConstructorsAsign mathCourse = new ConstructorsAsign("Mathematics");
-        mathConstructorsAsign.setCourseCode("AP Calc BC");
-        mathConstructorsAsign.setPointsTotal(85);
-        mathConstructorsAsign.setInstructorName("Dr. Dahms");
+        mathCourse.setCourseCode("AP Calculus BC");
+        mathCourse.setPoints(5.0);
+        mathCourse.setInstructor("Dr. Dahms");
 
-        ConstructorsAsign physicsCourse = new ConstructorsAsign("Physics", "AP Physics 1", 90, "Ms. Raphie");
+        ConstructorsAsign physicsCourse = new ConstructorsAsign("Physics", "AP Physics 1", 5.0, "Ms. Raphie");
 
         // Print course details
         System.out.println(csCourse);
@@ -78,4 +78,3 @@ public class ConstructorsAsign {
         System.out.println(physicsCourse);
     }
 }
-
