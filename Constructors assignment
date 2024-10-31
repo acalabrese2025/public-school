@@ -1,12 +1,30 @@
 public class ConstructorsAsign {
+    // Driver class to test the Course class
+    public static void main(String[] args) {
+        // Create course objects
+        Course csCourse = new Course("Computer Science", "CS AP A", 5.0, "Mr. Nelson");
+        Course mathCourse = new Course("Mathematics");
+        mathCourse.setCourseCode("AP Calculus BC");
+        mathCourse.setPoints(5.0);
+        mathCourse.setInstructor("Dr. Dahms");
 
+        Course physicsCourse = new Course("Physics", "AP Physics 1", 5.0, "Ms. Raphie");
+
+        // Print course details
+        System.out.println(csCourse);
+        System.out.println(mathCourse);
+        System.out.println(physicsCourse);
+    }
+}
+
+class Course {
         private String title;
         private String code;
         private double points;
         private String instructor;
         
         //constructor
-        public ConstructorsAsign(String title, String code, double points, String instructor) {
+        public Course(String title, String code, double points, String instructor) {
         this.title = title;
         this.code = code;
         this.points = points;
@@ -14,7 +32,7 @@ public class ConstructorsAsign {
     }
         
     // Constructor with course name only
-    public ConstructorsAsign(String title) {
+    public Course(String title) {
         this.title = title;
     }
 
@@ -59,22 +77,5 @@ public class ConstructorsAsign {
                "Course Code: " + code + "\n" +
                "Total Points: " + points + "\n" +
                "Instructor: " + instructor + "\n";
-    }
-
-    // Driver class to test the Course class
-    public static void main(String[] args) {
-        // Create course objects
-        ConstructorsAsign csCourse = new ConstructorsAsign("Computer Science", "CS AP A", 5.0, "Mr. Nelson");
-        ConstructorsAsign mathCourse = new ConstructorsAsign("Mathematics");
-        mathCourse.setCourseCode("AP Calculus BC");
-        mathCourse.setPoints(5.0);
-        mathCourse.setInstructor("Dr. Dahms");
-
-        ConstructorsAsign physicsCourse = new ConstructorsAsign("Physics", "AP Physics 1", 5.0, "Ms. Raphie");
-
-        // Print course details
-        System.out.println(csCourse);
-        System.out.println(mathCourse);
-        System.out.println(physicsCourse);
     }
 }
