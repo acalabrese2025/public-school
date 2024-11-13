@@ -1,0 +1,81 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class MyStore {
+    public static void main(String[] args) {
+        final double MAX_BUDGET = 250.00;
+        double totalSpent = 0.0;
+        int itemCount = 0;
+
+        HashMap<String, Item> items = new HashMap<>();
+        items.put("T Shirt", new Item("T Shirt", 29.99));
+        items.put("Shoes", new Item("Shoes", 125.99));
+        items.put("Jeans", new Item("Jeans", 60.99));
+        items.put("Jacket", new Item("Jacket", 250.00));
+        items.put("Hat", new Item("Hat", 25.99));
+        items.put("Shorts", new Item("Shorts", 75.99));
+        items.put("Blouse", new Item("Blouse", 88.99));
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Enter the name of the item you want to purchase (or type 'exit' to quit):");
+            String itemName = scanner.nextLine();
+
+            if (itemName.equalsIgnoreCase("exit")) {
+                break;
+            }
+
+            if (items.containsKey(itemName)) {
+                Item item = items.get(itemName);
+                double itemPrice = item.getDblPrice();
+
+                if (totalSpent + itemPrice > MAX_BUDGET) {
+                    System.out.println("Warning: Purchasing this item will exceed your budget of $" + MAX_BUDGET);
+                } else {
+                    totalSpent += itemPrice;
+                    itemCount++;
+                    System.out.println("Item added: " + item);
+                    System.out.println("Total items purchased: " + itemCount);
+                    System.out.println("Total spent so far: $" + totalSpent);
+                }
+            } else {
+                System.out.println("Item not found. Please enter a valid item name.");
+            }
+        }
+
+        scanner.close();
+        System.out.println("Thank you for shopping with MyStore!");
+    }
+}
+
+class Item {
+    private String strName;
+    private double dblPrice;
+
+    public Item(String strName, double dblPrice) {
+        this.strName = strName;
+        this.dblPrice = dblPrice;
+    }
+
+    public String getStrName() {
+        return strName;
+    }
+
+    public void setStrName(String strName) {
+        this.strName = strName;
+    }
+
+    public double getDblPrice() {
+        return dblPrice;
+    }
+
+    public void setDblPrice(double dblPrice) {
+        this.dblPrice = dblPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Item: " + strName + ", Price: $" + dblPrice;
+    }
+}
