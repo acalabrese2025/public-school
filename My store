@@ -1,13 +1,24 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.mystore;
+
+/**
+ *
+ * @author acalabrese2025
+ */
+//import scanner
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class MyStore {
-    public static void main(String[] args) {
-        final double MAX_BUDGET = 250.00;
+     public static void main(String[] args) {
+        final double MAX_BUDGET = 250.00;//set max budgetat 250$
         double totalSpent = 0.0;
         int itemCount = 0;
 
-        HashMap<String, Item> items = new HashMap<>();
+        HashMap<String, Item> items = new HashMap<>();//set all items and prices
         items.put("T Shirt", new Item("T Shirt", 29.99));
         items.put("Shoes", new Item("Shoes", 125.99));
         items.put("Jeans", new Item("Jeans", 60.99));
@@ -18,11 +29,11 @@ public class MyStore {
 
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        while (true) {// ask for the item they want to buy
             System.out.println("Enter the name of the item you want to purchase (or type 'exit' to quit):");
             String itemName = scanner.nextLine();
 
-            if (itemName.equalsIgnoreCase("exit")) {
+            if (itemName.equalsIgnoreCase("exit")) { //if they say exit it ends
                 break;
             }
 
@@ -30,14 +41,16 @@ public class MyStore {
                 Item item = items.get(itemName);
                 double itemPrice = item.getDblPrice();
 
-                if (totalSpent + itemPrice > MAX_BUDGET) {
+                if (totalSpent + itemPrice > MAX_BUDGET) {//max budget and if total is over
                     System.out.println("Warning: Purchasing this item will exceed your budget of $" + MAX_BUDGET);
                 } else {
                     totalSpent += itemPrice;
                     itemCount++;
                     System.out.println("Item added: " + item);
                     System.out.println("Total items purchased: " + itemCount);
-                    System.out.println("Total spent so far: $" + totalSpent);
+                    System.out.println("Total spent so far: $" + totalSpent);//print out what you bought, how much it cost, and what your total spent is.
+             
+         
                 }
             } else {
                 System.out.println("Item not found. Please enter a valid item name.");
@@ -50,6 +63,8 @@ public class MyStore {
 }
 
 class Item {
+   
+    
     private String strName;
     private double dblPrice;
 
@@ -79,3 +94,4 @@ class Item {
         return "Item: " + strName + ", Price: $" + dblPrice;
     }
 }
+   
