@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ShoppingList {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> shoppingList = new ArrayList<>();
+
+        System.out.println("Enter items for your shopping list (type 'done' to finish):");
+        while (true) {
+            String item = scanner.nextLine();
+            if (item.equalsIgnoreCase("done")) {
+                break;
+            }
+            shoppingList.add(item);
+        }
+
+        displayList(shoppingList);
+
+        System.out.println("Enter the number of the item you want to remove (or type 'done' to finish):");
+        while (true) {
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("done")) {
+                break;
+            }
+            try {
+                int index = Integer.parseInt(input) - 1;
+                if (index >= 0 && index < shoppingList.size()) {
+                    shoppingList.remove(index);
+                    displayList(shoppingList);
+                } else {
+                    System.out.println("Invalid number. Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+
+        System.out.println("Final shopping list:");
+        displayList(shoppingList);
+    }
+
+    private static void displayList(ArrayList<String> list) {
+        System.out.println("Your shopping list:");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + ". " + list.get(i));
+        }
+    }
+}
