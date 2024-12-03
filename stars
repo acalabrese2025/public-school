@@ -1,47 +1,65 @@
 public class Stars {
 
     public static void main(String[] args) {
-    {
-    final int MAX_ROWS = 10;
-    
-    //a
-    
+        final int MAX_ROWS = 10;
+        
+        // Part (a)
         System.out.println("a.");
+        for (int row = MAX_ROWS; row >= 1; row--) {
+            for (int star = 1; star <= row; star++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
         
-    //for each row
-    for (int row = MAX_ROWS; row >= 1; row--)
-    }
-    for (int spaces = 1; spaces <= row; spaces++)
-    System.out.print(" ");
-    }
- 
-    //print out the appropriate number of stars for that row
-    for (int star = MAX_ROWS; star >= row; star--){
-    System.out.print("*");
-    }
-    
-    //newline for a new row
-    System.out.println();
-    
-}
-    
-    //b
-    
-      System.out.println("b.");
+        // Part (b)
+        System.out.println("\nb.");
+        for (int row = 1; row <= MAX_ROWS; row++) {
+            for (int spaces = MAX_ROWS; spaces > row; spaces--) {
+                System.out.print(" ");
+            }
+            for (int star = 1; star <= row; star++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
         
-    //for each row
-    for (int row = 1; row <= MAX_ROWS; row--)
-    {
+        // Part (c)
+        System.out.println("\nc.");
+        for (int row = 0; row < MAX_ROWS; row++) {
+            for (int spaces = 0; spaces < row; spaces++) {
+                System.out.print(" ");
+            }
+            for (int star = MAX_ROWS; star > row; star--) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
         
-    //print out the appropriate number of stars for that row
-    for (int star = 1; star <= row; star++){
-    System.out.print("*");
-    }
-    
-    //newline for a new row
-    System.out.println();
-}
-  
-}
+        // Part (d)
+        System.out.println("\nd.");
+        int n = 5; // Number of levels for half of the diamond
+        
+        // Upper half of the diamond
+        for (int i = 1; i <= n; i++) {
+            for (int j = i; j < n; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= (2 * i - 1); k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        
+        // Lower half of the diamond
+        for (int i = n; i >= 1; i--) {
+            for (int j = n; j > i; j--) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= (2 * i - 1); k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
     }
 }
