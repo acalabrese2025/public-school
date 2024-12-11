@@ -1,38 +1,52 @@
-import java.util.Scanner;
-import java.util.Random;
+/* Game Instructions: Guess the Number: First the player must enter the amount of ghuesses they want to play with, 
+*6 is the recommoneded ammount but they can play more or less if they want it easier or more difficult. 
+*After the player choses the amount of guesses they want to play with they will than be tasked with guessing a number. 
+*After each Guess they will be told if the random number is higher or lower until they run out of guessses or guess the number correctly.
+ */
 
-public class GuessingGame {
+    //import's 
+
+    import java.util.Scanner;
+    import java.util.Random;
+
+
+public class SemesterGame {
     public static void main(String[] args) {
+    
+        //chosing random number between 1- 100
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         int targetNumber = random.nextInt(100) + 1;
-
+        
+        //enter how many guesses player wants to use
         System.out.print("Enter the number of guesses you want: ");
         int maxGuesses = scanner.nextInt();
         int guessCount = 0;
         boolean hasGuessedCorrectly = false;
-
+        
         System.out.println("I have chosen a number between 1 and 100. Try to guess it!");
-
+   
+        //ask player for first guess
         while (guessCount < maxGuesses && !hasGuessedCorrectly) {
             System.out.print("Enter your guess: ");
             int guess = scanner.nextInt();
             guessCount++;
-
+            
+            //if guess is lower than number tell them it is higher and opposite if guess is higher
             if (guess < targetNumber) {
                 System.out.println("Higher!");
             } else if (guess > targetNumber) {
                 System.out.println("Lower!");
+                    
+            //if guess correctly, rely to player that they have guessed the correct number
             } else {
                 hasGuessedCorrectly = true;
                 System.out.println("Congratulations! You've guessed the number!");
             }
         }
-
+        //if player runs out of guesses tell them they lost and what the number is 
         if (!hasGuessedCorrectly) {
             System.out.println("Sorry, you've run out of guesses. The number was " + targetNumber + ".");
         }
-
-        scanner.close();
     }
 }
