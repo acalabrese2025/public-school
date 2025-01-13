@@ -1,0 +1,79 @@
+// Define the Priority interface
+interface Priority {
+    void setPriority(int priority);
+    int getPriority();
+}
+
+// Define the Complexity interface
+interface Complexity {
+    void setComplexity(int complexity);
+    int getComplexity();
+}
+
+// Implement the Task class that implements Priority, Complexity, and Comparable interfaces
+class Task implements Priority, Complexity, Comparable<Task> {
+    private String name;
+    private int priority;
+    private int complexity;
+
+    public Task(String name, int priority, int complexity) {
+        this.name = name;
+        this.priority = priority;
+        this.complexity = complexity;
+    }
+
+    @Override
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    @Override
+    public int getPriority() {
+        return priority;
+    }
+
+    @Override
+    public void setComplexity(int complexity) {
+        this.complexity = complexity;
+    }
+
+    @Override
+    public int getComplexity() {
+        return complexity;
+    }
+
+    @Override
+    public int compareTo(Task other) {
+        if (this.priority != other.priority) {
+            return Integer.compare(this.priority, other.priority);
+        } else {
+            return Integer.compare(this.complexity, other.complexity);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" + "name='" + name + '\'' + ", priority=" + priority + ", complexity=" + complexity + '}';
+    }
+}
+
+// Driver class
+public class ToDoList {
+    public static void main(String[] args) {
+        // Create Task instances
+        Task task1 = new Task("Task 1", 2, 5);
+        Task task2 = new Task("Task 2", 1, 3);
+        Task task3 = new Task("Task 3", 3, 4);
+
+        // Create an array of tasks
+        Task[] tasks = { task1, task2, task3 };
+
+        // Sort tasks by priority and then by complexity
+        java.util.Arrays.sort(tasks);
+
+        // Print sorted tasks
+        for (Task task : tasks) {
+            System.out.println(task);
+        }
+    }
+}
