@@ -1,77 +1,108 @@
-// Define the Priority interface
-interface Priority {
-    void setPriority(int priority);
-    int getPriority();
-}
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-// Define the Complexity interface
-interface Complexity {
-    void setComplexity(int complexity);
-    int getComplexity();
-}
+public class ToDoList {
 
-// Implement the Task class that implements Priority, Complexity, and Comparable interfaces
-class Task implements Priority, Complexity, Comparable<Task> {
-    private String name;
-    private int priority;
-    private int complexity;
-
-    public Task(String name, int priority, int complexity) {
-        this.name = name;
-        this.priority = priority;
-        this.complexity = complexity;
+    // Priority Interface
+    public interface Priority {
+        void setPriority(int priority);
+        int getPriority();
     }
 
-    @Override
-    public void setPriority(int priority) {
-        this.priority = priority;
+    // Complexity Interface
+    public interface Complexity {
+        void setComplexity(int complexity);
+        int getComplexity();
     }
 
-    @Override
-    public int getPriority() {
-        return priority;
-    }
+    // Task Class implementing Priority, Complexity, and Comparable
+    public static class Task implements Priority, Complexity, Comparable<Task> {
+        private String name;
+        private int priority;
+        private int complexity;
 
-    @Override
-    public void setComplexity(int complexity) {
-        this.complexity = complexity;
-    }
+        // Constructor to initialize the Task
+        public Task(String name) {
+            this.name = name;
+            this.priority = 0; // Default priority
+            this.complexity = 0; // Default complexity
+        }
 
-    @Override
-    public int getComplexity() {
-        return complexity;
-    }
+        // Implementing the setPriority method from Priority interface
+        @Override
+        public void setPriority(int priority) {
+            this.priority = priority;
+        }
 
-    @Override
-    public int compareTo(Task other) {
-        if (this.priority != other.priority) {
-            return Integer.compare(this.priority, other.priority);
-        } else {
+        // Implementing the getPriority method from Priority interface
+        @Override
+        public int getPriority() {
+            return this.priority;
+        }
+
+        // Implementing the setComplexity method from Complexity interface
+        @Override
+        public void setComplexity(int complexity) {
+            this.complexity = complexity;
+        }
+
+        // Implementing the getComplexity method from Complexity interface
+        @Override
+        public int getComplexity() {
+            return this.complexity;
+        }
+
+        // Implementing the compareTo method from Comparable interface
+        @Override
+        public int compareTo(Task other) {
+            // Compare by priority first
+            if (this.priority != other.priority) {
+                return Integer.compare(this.priority, other.priority);
+            }
+            // If priorities are the same, compare by complexity
             return Integer.compare(this.complexity, other.complexity);
+        }
+
+        // String representation of the task
+        @Override
+        public String toString() {
+            return "Task{name='" + name + "', priority=" + priority + ", complexity=" + complexity + "}";
         }
     }
 
-    @Override
-    public String toString() {
-        return "Task{" + "name='" + name + '\'' + ", priority=" + priority + ", complexity=" + complexity + '}';
-    }
-}
-
-// Driver class
-public class ToDoList {
     public static void main(String[] args) {
-        // Create Task instances
-        Task task1 = new Task("Task 1", 2, 5);
-        Task task2 = new Task("Task 2", 1, 3);
-        Task task3 = new Task("Task 3", 3, 4);
+        // Create a list of tasks
+        List<Task> tasks = new ArrayList<>();
 
-        // Create an array of tasks
-        Task[] tasks = { task1, task2, task3 };
+        // Instantiate some tasks
+        Task task1 = new Task("Task 1");
+        task1.setPriority(3);
+        task1.setComplexity(2);
 
-        // Sort tasks by priority and then by complexity
-        java.util.Arrays.sort(tasks);
+        Task task2 = new Task("Task 2");
+        task2.setPriority(1);
+        task2.setComplexity(5);
 
-        // Print sorted tasks
+        Task task3 = new Task("Task 3");
+        task3.setPriority(2);
+        task3.setComplexity(1);
+
+        Task task4 = new Task("Task 4");
+        task4.setPriority(3);
+        task4.setComplexity(3);
+
+        // Add tasks to the list
+        tasks.add(task1);
+        tasks.add(task2);
+        tasks.add(task3);
+        tasks.add(task4);
+
+        // Sort tasks based on priority first, then complexity
+        Collections.sort(tasks);
+
+        // Print the sorted tasks
+        System.out.println("Sorted Tasks:");
         for (Task task : tasks) {
             System.out.println(task);
         }
