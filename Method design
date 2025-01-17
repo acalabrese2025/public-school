@@ -24,3 +24,62 @@ public class Course {
         return courseName + ": " + testScore;
     }
 }
+public class Student {
+    private String firstName;
+    private String lastName;
+    private Course[] courses; // Array of 3 courses
+
+    // Default constructor
+    public Student() {
+        firstName = "";
+        lastName = "";
+        courses = new Course[3]; // Initialize the courses array
+    }
+
+    // Overloaded constructor
+    public Student(String first, String last) {
+        firstName = first;
+        lastName = last;
+        courses = new Course[3]; // Initialize the courses array
+        // Initialize courses with default Course objects
+        for (int i = 0; i < 3; i++) {
+            courses[i] = new Course("Course " + (i + 1));
+        }
+    }
+
+    // Method to set a test score for a particular course
+    public void setTestScore(int courseIndex, int score) {
+        if (courseIndex >= 0 && courseIndex < 3) {
+            courses[courseIndex].setTestScore(score);
+        }
+    }
+
+    // Method to get a test score from a particular course
+    public int getTestScore(int courseIndex) {
+        if (courseIndex >= 0 && courseIndex < 3) {
+            return courses[courseIndex].getTestScore();
+        }
+        return -1; // Invalid index
+    }
+
+    // Method to calculate the average score of all 3 courses
+    public double getAverage() {
+        int total = 0;
+        for (int i = 0; i < 3; i++) {
+            total += courses[i].getTestScore();
+        }
+        return total / 3.0;
+    }
+
+    // String representation of the student details
+    @Override
+    public String toString() {
+        String result = firstName + " " + lastName + "\n";
+        for (Course course : courses) {
+            result += course.toString() + "\n";
+        }
+        result += "Average Score: " + getAverage();
+        return result;
+    }
+}
+
