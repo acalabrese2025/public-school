@@ -1,0 +1,26 @@
+public class Course {
+    private String courseName;
+    private int testScore;
+
+    // Default constructor (sets test score to 0)
+    public Course(String courseName) {
+        this.courseName = courseName;
+        this.testScore = 0;
+    }
+
+    // Method to set the test score
+    public void setTestScore(int score) {
+        this.testScore = score;
+    }
+
+    // Method to get the test score
+    public int getTestScore() {
+        return this.testScore;
+    }
+
+    // String representation of the course details
+    @Override
+    public String toString() {
+        return courseName + ": " + testScore;
+    }
+}
