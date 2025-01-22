@@ -1,10 +1,13 @@
-import java.util.Arrays;
+//imports
+ import java.util.Arrays;
 
+//student class
 public class Student {
-    private String firstName;
-    private String lastName;
-    private Course[] courses;
+    private final String firstName;
+    private final String lastName;
+    private final Course[] courses;
 
+    //defualt constructor for name and courses
     public Student() {
         this.firstName = "";
         this.lastName = "";
@@ -22,20 +25,20 @@ public class Student {
             this.courses[i] = new Course("Course" + (i + 1));
         }
     }
-
+//method to set test score
     public void setTestScore(int courseIndex, int score) {
         if (courseIndex >= 0 && courseIndex < 3) {
             this.courses[courseIndex].setTestScore(score);
         }
     }
-
+//method to get test scores
     public int getTestScore(int courseIndex) {
         if (courseIndex >= 0 && courseIndex < 3) {
             return this.courses[courseIndex].getTestScore();
         }
         return -1;  // Indicating invalid index
     }
-
+//calculate avarge test score
     public double getAverage() {
         double sum = 0;
         for (Course course : this.courses) {
@@ -51,9 +54,9 @@ public class Student {
                 ", courses=" + Arrays.toString(courses) +
                 '}';
     }
-
+//method to test student and course and print out
     public static void main(String[] args) {
-        Student student1 = new Student("John", "Doe");
+        Student student1 = new Student("Jonahton", "Smith");
         student1.setTestScore(0, 85);  // Setting test score for first course
         student1.setTestScore(1, 90);  // Setting test score for second course
         student1.setTestScore(2, 78);  // Setting test score for third course
@@ -62,7 +65,7 @@ public class Student {
         System.out.println("Average Score: " + student1.getAverage());  // Print average test score
     }
 }
-
+// collect all information
 class Course {
     private String courseName;
     private int testScore;
