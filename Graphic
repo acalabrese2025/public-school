@@ -51,6 +51,16 @@ public class Student {
                 ", courses=" + Arrays.toString(courses) +
                 '}';
     }
+
+    public static void main(String[] args) {
+        Student student1 = new Student("John", "Doe");
+        student1.setTestScore(0, 85);  // Setting test score for first course
+        student1.setTestScore(1, 90);  // Setting test score for second course
+        student1.setTestScore(2, 78);  // Setting test score for third course
+
+        System.out.println(student1);  // Print student details
+        System.out.println("Average Score: " + student1.getAverage());  // Print average test score
+    }
 }
 
 class Course {
@@ -75,17 +85,5 @@ class Course {
         return "Course{courseName='" + courseName + '\'' +
                 ", testScore=" + testScore +
                 '}';
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Student student1 = new Student("John", "Doe");
-        student1.setTestScore(0, 85);  // Setting test score for first course
-        student1.setTestScore(1, 90);  // Setting test score for second course
-        student1.setTestScore(2, 78);  // Setting test score for third course
-
-        System.out.println(student1);  // Print student details
-        System.out.println("Average Score: " + student1.getAverage());  // Print average test score
     }
 }
