@@ -1,0 +1,89 @@
+public class Student {
+    private String firstName;
+    private String lastName;
+    private Course[] courses;
+
+    public Student() {
+        this.firstName = "";
+        this.lastName = "";
+        this.courses = new Course[3];
+        for (int i = 0; i < 3; i++) {
+            this.courses[i] = new Course("Course" + (i + 1));
+        }
+    }
+
+    public Student(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.courses = new Course[3];
+        for (int i = 0; i < 3; i++) {
+            this.courses[i] = new Course("Course" + (i + 1));
+        }
+    }
+
+    public void setTestScore(int courseIndex, int score) {
+        if (courseIndex >= 0 && courseIndex < 3) {
+            this.courses[courseIndex].setTestScore(score);
+        }
+    }
+
+    public int getTestScore(int courseIndex) {
+        if (courseIndex >= 0 && courseIndex < 3) {
+            return this.courses[courseIndex].getTestScore();
+        }
+        return -1;  // Indicating invalid index
+    }
+
+    public double getAverage() {
+        double sum = 0;
+        for (Course course : this.courses) {
+            sum += course.getTestScore();
+        }
+        return sum / 3;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", courses=" + Arrays.toString(courses) +
+                '}';
+    }
+}
+
+class Course {
+    private String courseName;
+    private int testScore;
+
+    public Course(String courseName) {
+        this.courseName = courseName;
+        this.testScore = 0;
+    }
+
+    public void setTestScore(int score) {
+        this.testScore = score;
+    }
+
+    public int getTestScore() {
+        return this.testScore;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{courseName='" + courseName + '\'' +
+                ", testScore=" + testScore +
+                '}';
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student student1 = new Student("John", "Doe");
+        student1.setTestScore(0, 85);  // Setting test score for first course
+        student1.setTestScore(1, 90);  // Setting test score for second course
+        student1.setTestScore(2, 78);  // Setting test score for third course
+
+        System.out.println(student1);  // Print student details
+        System.out.println("Average Score: " + student1.getAverage());  // Print average test score
+    }
+}
