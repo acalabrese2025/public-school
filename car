@@ -1,0 +1,65 @@
+public class Main {
+
+public static void main(String[] args){
+//create a base Vehicle object 9in this case a Semi Truck
+Vehicle v = new Vehicle("Semi-Truck", 30.0, 2000, 100000.00);
+//print out the object (toString)
+System.out.println(v);
+//now create a child object (a Car)
+Car myCar = new Car("BMW", 200.00, 2, 100.00, 30.0);
+//couple of variables to alter, to change the output a little
+//myCar.setSpoiler(true);
+//myCar.setStereo(true);
+System.out.println(myCar);
+}
+}
+int wheels = 4;
+String color = "White";
+boolean spoiler = false;
+boolean stereo = false;
+double mpg = 0.0; //has an extra variable, mpg
+public Car(String inBrand, double inSpeed, int inPassengers, double inCargo,
+double inMPG){
+constructor
+}
+}
+public boolean getSpoiler(){
+return spoiler;
+}
+//another additional variable
+public void setStereo(boolean inStereo){
+stereo = inStereo;
+}
+public boolean getStereo(){
+return stereo;
+}
+//overrides the super getSpeed method
+@Override
+public double getSpeed() {
+if (spoiler)
+else
+}
+public void setMpg(double mpg) {
+this.mpg = mpg;
+}
+public double getMPG(){
+if(stereo)
+else
+}
+//usesd the super toString, as well as addingnthe new variable to it.
+public String toString(){
+String result = super.toString() +
+"MPG :\t\t\t" + this.getMPG();
+return result ;
+}
+}
+return mpg - (mpg / 10);
+return mpg;
+return super.getSpeed() + 20;
+return super.getSpeed();
+super(inBrand, inSpeed, inPassengers, inCargo); //uses the super
+mpg = inMPG; //also include the extra variable in the Car constructor
+//another additional variable
+public void setSpoiler(boolean inSpoiler){
+spoiler = inSpoiler;
+}
