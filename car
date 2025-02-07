@@ -1,65 +1,296 @@
 public class Main {
 
-public static void main(String[] args){
-//create a base Vehicle object 9in this case a Semi Truck
-Vehicle v = new Vehicle("Semi-Truck", 30.0, 2000, 100000.00);
-//print out the object (toString)
-System.out.println(v);
-//now create a child object (a Car)
-Car myCar = new Car("BMW", 200.00, 2, 100.00, 30.0);
-//couple of variables to alter, to change the output a little
-//myCar.setSpoiler(true);
-//myCar.setStereo(true);
-System.out.println(myCar);
-}
-}
-int wheels = 4;
-String color = "White";
-boolean spoiler = false;
-boolean stereo = false;
-double mpg = 0.0; //has an extra variable, mpg
-public Car(String inBrand, double inSpeed, int inPassengers, double inCargo,
-double inMPG){
-constructor
-}
-}
-public boolean getSpoiler(){
-return spoiler;
-}
-//another additional variable
-public void setStereo(boolean inStereo){
-stereo = inStereo;
-}
-public boolean getStereo(){
-return stereo;
-}
-//overrides the super getSpeed method
-@Override
-public double getSpeed() {
-if (spoiler)
-else
-}
-public void setMpg(double mpg) {
-this.mpg = mpg;
-}
-public double getMPG(){
-if(stereo)
-else
-}
-//usesd the super toString, as well as addingnthe new variable to it.
-public String toString(){
-String result = super.toString() +
-"MPG :\t\t\t" + this.getMPG();
-return result ;
-}
-}
-return mpg - (mpg / 10);
-return mpg;
-return super.getSpeed() + 20;
-return super.getSpeed();
-super(inBrand, inSpeed, inPassengers, inCargo); //uses the super
-mpg = inMPG; //also include the extra variable in the Car constructor
-//another additional variable
-public void setSpoiler(boolean inSpoiler){
-spoiler = inSpoiler;
+    public static void main(String[] args) {
+        // Create a SemiTruck object
+        Vehicle semiTruck = new SemiTruck("Semi-Truck", 60.0, 30000, 120000.00, true, true);
+        System.out.println(semiTruck);
+
+        // Create a Car object
+        Car myCar = new Car("BMW", 200.00, 2, 100.00, 30.0);
+        myCar.setSpoiler(true);
+        myCar.setStereo(true);
+        System.out.println(myCar);
+
+        // Create a SailBoat object
+        Vehicle sailBoat = new SailBoat("Sail Boat", 20.0, 5000, 50000.00, 300);
+        System.out.println(sailBoat);
+
+        // Create a MotorBoat object
+        Vehicle motorBoat = new MotorBoat("Motor Boat", 40.0, 4000, 80000.00, 150);
+        System.out.println(motorBoat);
+
+        // Create a Jet object
+        Vehicle jet = new Jet("Jet", 600.0, 20000, 30000000.00, 45000);
+        System.out.println(jet);
+
+        // Create a PropellerPlane object
+        Vehicle propellerPlane = new PropellerPlane("Propeller Plane", 250.0, 15000, 1000000.00, 2);
+        System.out.println(propellerPlane);
+
+        // Create a Bicycle object
+        Vehicle bicycle = new Bicycle("Bicycle", 15.0, 25, 500.00, true);
+        System.out.println(bicycle);
+
+        // Create a Hoverboard object
+        Vehicle hoverboard = new Hoverboard("Hoverboard", 10.0, 20, 300.00, 2);
+        System.out.println(hoverboard);
+    }
+
+    // Base Vehicle Class
+    public static class Vehicle {
+        private String type;
+        private double speed;
+        private int weight;
+        private double price;
+
+        public Vehicle(String type, double speed, int weight, double price) {
+            this.type = type;
+            this.speed = speed;
+            this.weight = weight;
+            this.price = price;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public double getSpeed() {
+            return speed;
+        }
+
+        public int getWeight() {
+            return weight;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        @Override
+        public String toString() {
+            return "Type: " + type + "\nSpeed: " + speed + " mph\nWeight: " + weight + " lbs\nPrice: $" + price;
+        }
+    }
+
+    // Car Class Inheriting Vehicle
+    public static class Car extends Vehicle {
+        private double mpg;
+        private boolean spoiler;
+        private boolean stereo;
+
+        public Car(String brand, double speed, int passengers, double cargo, double mpg) {
+            super(brand, speed, passengers, cargo);
+            this.mpg = mpg;
+        }
+
+        public boolean getSpoiler() {
+            return spoiler;
+        }
+
+        public void setSpoiler(boolean spoiler) {
+            this.spoiler = spoiler;
+        }
+
+        public boolean getStereo() {
+            return stereo;
+        }
+
+        public void setStereo(boolean stereo) {
+            this.stereo = stereo;
+        }
+
+        @Override
+        public double getSpeed() {
+            if (spoiler) {
+                return super.getSpeed() + 20;
+            } else {
+                return super.getSpeed();
+            }
+        }
+
+        public void setMpg(double mpg) {
+            this.mpg = mpg;
+        }
+
+        public double getMPG() {
+            if (stereo) {
+                return mpg - (mpg / 10);
+            } else {
+                return mpg;
+            }
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + "\nMPG: " + getMPG();
+        }
+    }
+
+    // SemiTruck Class Inheriting Vehicle
+    public static class SemiTruck extends Vehicle {
+        private boolean hasSleepingArea;
+        private boolean hasTrailer;
+
+        public SemiTruck(String type, double speed, int weight, double price, boolean hasSleepingArea, boolean hasTrailer) {
+            super(type, speed, weight, price);
+            this.hasSleepingArea = hasSleepingArea;
+            this.hasTrailer = hasTrailer;
+        }
+
+        public boolean getHasSleepingArea() {
+            return hasSleepingArea;
+        }
+
+        public void setHasSleepingArea(boolean hasSleepingArea) {
+            this.hasSleepingArea = hasSleepingArea;
+        }
+
+        public boolean getHasTrailer() {
+            return hasTrailer;
+        }
+
+        public void setHasTrailer(boolean hasTrailer) {
+            this.hasTrailer = hasTrailer;
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + "\nSleeping Area: " + (hasSleepingArea ? "Yes" : "No") + "\nTrailer: " + (hasTrailer ? "Yes" : "No");
+        }
+    }
+
+    // Boat Classes Inheriting Vehicle
+    public static class SailBoat extends Vehicle {
+        private int sailArea;
+
+        public SailBoat(String type, double speed, int weight, double price, int sailArea) {
+            super(type, speed, weight, price);
+            this.sailArea = sailArea;
+        }
+
+        public int getSailArea() {
+            return sailArea;
+        }
+
+        public void setSailArea(int sailArea) {
+            this.sailArea = sailArea;
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + "\nSail Area: " + sailArea + " sq ft";
+        }
+    }
+
+    public static class MotorBoat extends Vehicle {
+        private double enginePower;
+
+        public MotorBoat(String type, double speed, int weight, double price, double enginePower) {
+            super(type, speed, weight, price);
+            this.enginePower = enginePower;
+        }
+
+        public double getEnginePower() {
+            return enginePower;
+        }
+
+        public void setEnginePower(double enginePower) {
+            this.enginePower = enginePower;
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + "\nEngine Power: " + enginePower + " hp";
+        }
+    }
+
+    // Airplane Classes Inheriting Vehicle
+    public static class Jet extends Vehicle {
+        private int maxAltitude;
+
+        public Jet(String type, double speed, int weight, double price, int maxAltitude) {
+            super(type, speed, weight, price);
+            this.maxAltitude = maxAltitude;
+        }
+
+        public int getMaxAltitude() {
+            return maxAltitude;
+        }
+
+        public void setMaxAltitude(int maxAltitude) {
+            this.maxAltitude = maxAltitude;
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + "\nMax Altitude: " + maxAltitude + " ft";
+        }
+    }
+
+    public static class PropellerPlane extends Vehicle {
+        private int numberOfEngines;
+
+        public PropellerPlane(String type, double speed, int weight, double price, int numberOfEngines) {
+            super(type, speed, weight, price);
+            this.numberOfEngines = numberOfEngines;
+        }
+
+        public int getNumberOfEngines() {
+            return numberOfEngines;
+        }
+
+        public void setNumberOfEngines(int numberOfEngines) {
+            this.numberOfEngines = numberOfEngines;
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + "\nNumber of Engines: " + numberOfEngines;
+        }
+    }
+
+    // Other Vehicle Classes Inheriting Vehicle
+    public static class Bicycle extends Vehicle {
+        private boolean hasBasket;
+
+        public Bicycle(String type, double speed, int weight, double price, boolean hasBasket) {
+            super(type, speed, weight, price);
+            this.hasBasket = hasBasket;
+        }
+
+        public boolean getHasBasket() {
+            return hasBasket;
+        }
+
+        public void setHasBasket(boolean hasBasket) {
+            this.hasBasket = hasBasket;
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + "\nBasket: " + (hasBasket ? "Yes" : "No");
+        }
+    }
+
+    public static class Hoverboard extends Vehicle {
+        private double batteryLife;
+
+        public Hoverboard(String type, double speed, int weight, double price, double batteryLife) {
+            super(type, speed, weight, price);
+            this.batteryLife = batteryLife;
+        }
+
+        public double getBatteryLife() {
+            return batteryLife;
+        }
+
+        public void setBatteryLife(double batteryLife) {
+            this.batteryLife = batteryLife;
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + "\nBattery Life: " + batteryLife + " hours";
+        }
+    }
 }
