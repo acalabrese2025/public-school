@@ -1,0 +1,66 @@
+import java.util.ArrayList;
+
+// Base class: Aircraft
+class Aircraft {
+    protected String wings;
+
+    public Aircraft() {
+        this.wings = "Fixed wings";
+    }
+
+    @Override
+    public String toString() {
+        return "Aircraft with " + wings;
+    }
+}
+
+// Child class: SingleEnginePlane
+class SingleEnginePlane extends Aircraft {
+    private String engineType;
+
+    public SingleEnginePlane() {
+        super(); // Inherits wings from Aircraft
+        this.engineType = "Rotary engine";
+    }
+
+    @Override
+    public String toString() {
+        return "SingleEnginePlane with " + wings + " and a " + engineType;
+    }
+}
+
+// Child class: Helicopter
+class Helicopter extends SingleEnginePlane {
+    private String rotorType;
+
+    public Helicopter() {
+        super(); // Inherits features from SingleEnginePlane
+        this.rotorType = "Rotating helicopter blades";
+    }
+
+    @Override
+    public String toString() {
+        return "Helicopter with " + wings + ", a " + super.toString().split("and a ")[1] + ", and " + rotorType;
+    }
+}
+
+// Main class
+public class AircraftHierarchy {
+    public static void main(String[] args) {
+        // Create objects
+        Aircraft aircraft = new Aircraft();
+        SingleEnginePlane singleEnginePlane = new SingleEnginePlane();
+        Helicopter helicopter = new Helicopter();
+
+        // Place objects in an ArrayList
+        ArrayList<Aircraft> aircraftList = new ArrayList<>();
+        aircraftList.add(aircraft);
+        aircraftList.add(singleEnginePlane);
+        aircraftList.add(helicopter);
+
+        // Print each object
+        for (Aircraft obj : aircraftList) {
+            System.out.println(obj.toString());
+        }
+    }
+}
