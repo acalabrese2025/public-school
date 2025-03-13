@@ -1,66 +1,63 @@
 import java.util.ArrayList;
 
-// Base class: Aircraft
+// Base class Aircraft
 class Aircraft {
-    protected String wings;
+    String wings;
 
-    public Aircraft() {
-        this.wings = "Fixed wings";
+    public Aircraft(String wings) {
+        this.wings = wings;
     }
 
-    @Override
-    public String toString() {
-        return "Aircraft with " + wings;
+    public void displayFeatures() {
+        System.out.println("This is an aircraft with " + wings + " wings.");
     }
 }
 
-// Child class: SingleEnginePlane
+// Child class SingleEnginePlane extending Aircraft
 class SingleEnginePlane extends Aircraft {
-    private String engineType;
+    String engineType;
 
-    public SingleEnginePlane() {
-        super(); // Inherits wings from Aircraft
-        this.engineType = "Rotary engine";
+    public SingleEnginePlane(String wings, String engineType) {
+        super(wings);
+        this.engineType = engineType;
     }
 
     @Override
-    public String toString() {
-        return "SingleEnginePlane with " + wings + " and a " + engineType;
+    public void displayFeatures() {
+        System.out.println("This is a single-engine plane with " + wings + " wings and a " + engineType + " engine.");
     }
 }
 
-// Child class: Helicopter
+// Child class Helicopter extending SingleEnginePlane
 class Helicopter extends SingleEnginePlane {
-    private String rotorType;
+    String bladeType;
 
-    public Helicopter() {
-        super(); // Inherits features from SingleEnginePlane
-        this.rotorType = "Rotating helicopter blades";
+    public Helicopter(String wings, String engineType, String bladeType) {
+        super(wings, engineType);
+        this.bladeType = bladeType;
     }
 
     @Override
-    public String toString() {
-        return "Helicopter with " + wings + ", a " + super.toString().split("and a ")[1] + ", and " + rotorType;
+    public void displayFeatures() {
+        System.out.println("This is a helicopter with " + wings + " wings, a " + engineType + " engine, and " + bladeType + " blades.");
     }
 }
 
-// Main class
-public class AircraftHierarchy {
+// Main class with ArrayList to store objects
+public class Main {
     public static void main(String[] args) {
-        // Create objects
-        Aircraft aircraft = new Aircraft();
-        SingleEnginePlane singleEnginePlane = new SingleEnginePlane();
-        Helicopter helicopter = new Helicopter();
+        // Create objects of Aircraft, SingleEnginePlane, and Helicopter
+        Aircraft plane = new SingleEnginePlane("fixed", "rotary");
+        Aircraft helicopter = new Helicopter("rotary", "gas", "rotating helicopter");
 
-        // Place objects in an ArrayList
+        // Create an ArrayList to store different types of Aircraft
         ArrayList<Aircraft> aircraftList = new ArrayList<>();
-        aircraftList.add(aircraft);
-        aircraftList.add(singleEnginePlane);
+        aircraftList.add(plane);
         aircraftList.add(helicopter);
 
-        // Print each object
-        for (Aircraft obj : aircraftList) {
-            System.out.println(obj.toString());
+        // Print features of each aircraft
+        for (Aircraft aircraft : aircraftList) {
+            aircraft.displayFeatures();
         }
     }
 }
