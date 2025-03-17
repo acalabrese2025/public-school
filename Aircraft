@@ -4,10 +4,12 @@ import java.util.ArrayList;
 class Aircraft {
     String wings;
 
+    // Constructor for Aircraft class
     public Aircraft(String wings) {
         this.wings = wings;
     }
 
+    // Method to display the features of an aircraft
     public void displayFeatures() {
         System.out.println("This is an aircraft with " + wings + " wings.");
     }
@@ -17,11 +19,13 @@ class Aircraft {
 class SingleEnginePlane extends Aircraft {
     String engineType;
 
+    // Constructor for SingleEnginePlane class
     public SingleEnginePlane(String wings, String engineType) {
-        super(wings);
+        super(wings);  // Call to Aircraft's constructor
         this.engineType = engineType;
     }
 
+    // Override method to display the features of the single-engine plane
     @Override
     public void displayFeatures() {
         System.out.println("This is a single-engine plane with " + wings + " wings and a " + engineType + " engine.");
@@ -32,19 +36,21 @@ class SingleEnginePlane extends Aircraft {
 class Helicopter extends SingleEnginePlane {
     String bladeType;
 
+    // Constructor for Helicopter class
     public Helicopter(String wings, String engineType, String bladeType) {
-        super(wings, engineType);
+        super(wings, engineType);  // Call to SingleEnginePlane's constructor
         this.bladeType = bladeType;
     }
 
+    // Override method to display the features of the helicopter
     @Override
     public void displayFeatures() {
         System.out.println("This is a helicopter with " + wings + " wings, a " + engineType + " engine, and " + bladeType + " blades.");
     }
 }
 
-// Main class with ArrayList to store objects
-public class Main {
+// Main class to test the hierarchy
+public class Arcafy {
     public static void main(String[] args) {
         // Create objects of Aircraft, SingleEnginePlane, and Helicopter
         Aircraft plane = new SingleEnginePlane("fixed", "rotary");
@@ -60,4 +66,6 @@ public class Main {
             aircraft.displayFeatures();
         }
     }
+}
+
 }
