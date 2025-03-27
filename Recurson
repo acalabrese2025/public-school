@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Recursion {
+
+    // Calculate the binomial coefficient recursively
+    public static int binomial(int N, int k) {
+        // Base cases
+        if (k == 0 || k == N) {
+            return 1;
+        }
+        // Recursive case
+        return binomial(N - 1, k - 1) + binomial(N - 1, k);
+    }
+
+    // Function to print the Nth line of Pascal's Triangle
+    public static List<Integer> pascalLine(int N) {
+        List<Integer> row = new ArrayList<>();
+        for (int k = 0; k <= N; k++) {
+            row.add(binomial(N, k));
+        }
+        return row;
+    }
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // ask user to input the line number
+        System.out.print("Which line of Pascal's Triangle would you like to print? ");
+        int N = scanner.nextInt(); // Read the user input
+
+        // Get the line from Pascal's Triangle
+        List<Integer> line = pascalLine(N);
+
+        // Print the line
+        System.out.println("The " + N + "th line of Pascal's Triangle is: " + line);
+    }
+}
