@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.*;
+
+public class ZooManagement {
+
+    // Animal Class
+    static class Animal {
+        private String name;
+        private String type; // Mammal, Bird, Reptile, etc.
+        private String exhibit;
+
+        public Animal(String name, String type, String exhibit) {
+            this.name = name;
+            this.type = type;
+            this.exhibit = exhibit;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public String getExhibit() {
+            return exhibit;
+        }
+    }
+
+    // Staff Class
+    static class Staff {
+        private String name;
+        private String staffId;
+        private String position;
+
+        public Staff(String name, String staffId, String position) {
+            this.name = name;
+            this.staffId = staffId;
+            this.position = position;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getStaffId() {
+            return staffId;
+        }
+
+        public String getPosition() {
+            return position;
+        }
+    }
