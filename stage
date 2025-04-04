@@ -1,0 +1,242 @@
+import java.io.*;
+import java.util.*;
+
+public class ZooManagementSystem {
+
+    // Animal Class
+    static class Animal {
+        private String name;
+        private String type; // Mammal, Bird, Reptile, etc.
+        private String exhibit;
+
+        public Animal(String name, String type, String exhibit) {
+            this.name = name;
+            this.type = type;
+            this.exhibit = exhibit;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public String getExhibit() {
+            return exhibit;
+        }
+    }
+
+    // Staff Class
+    static class Staff {
+        private String name;
+        private String staffId;
+        private String position;
+
+        public Staff(String name, String staffId, String position) {
+            this.name = name;
+            this.staffId = staffId;
+            this.position = position;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getStaffId() {
+            return staffId;
+        }
+
+        public String getPosition() {
+            return position;
+        }
+    }
+
+    // Lists to store animals and staff
+    static List<Animal> animalsList = new ArrayList<>();
+    static List<Staff> staffList = new ArrayList<>();
+
+    public static void main(String[] args) {
+        // Load animals and staff from CSV on startup
+        loadData();
+
+        // Interactive menu for managing the zoo
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("\nZoo Management System");
+            System.out.println("1. Add Animal");
+            System.out.println("2. Add Staff");
+            System.out.println("3. View All Animals");
+            System.out.println("4. View All Staff");
+            System.out.println("5. Assign Staff to Animal");
+            System.out.println("6. Save Data");
+            System.out.println("7. Exit");
+            System.out.print("Choose an option: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume the newline
+
+            switch (choice) {
+                case 1:
+                    addAnimal(scanner);
+                    break;
+                case 2:
+                    addStaff(scanner);
+                    break;
+                case 3:
+                    viewAllAnimals();
+                    break;
+                case 4:
+                    viewAllStaff();
+                    break;
+                case 5:
+                    assignStaffToAnimal(scanner);
+                    break;
+                case 6:
+                    saveData();
+                    break;
+                case 7:
+                    System.out.println("Exiting...");
+                    saveData();
+                    return;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+            }
+        }
+    }
+
+    // Add Animal
+    private static void addAnimal(Scanner scanner) {
+        System.out.print("Enter Animal Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Animal Type (Mammal, Bird, Reptile, etc.): ");
+        String type = scanner.nextLine();
+        System.out.print("Enter Exhibit Name: ");
+        String exhibit = scanner.nextLine();
+
+        Animal animal = new Animal(name, type, exhibit);
+        animalsList.add(animal);
+        System.out.println("Animal added successfully.");
+    }
+
+    // Add Staff
+    private static void addStaff(Scanner scanner) {
+        System.out.print("Enter Staff Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Staff ID: ");
+        String staffId = scanner.nextLine();
+        System.out.print("Enter Staff Position (Zookeeper, Veterinarian, etc.): ");
+        String position = scanner.nextLine();
+
+        Staff staff = new Staff(name, staffId, position);
+        staffList.add(staff);
+        System.out.println("Staff added successfully.");
+    }
+
+    // View All Animals
+    private static void viewAllAnimals() {
+        if (animalsList.isEmpty()) {
+            System.out.println("No animals in the zoo.");
+            return;
+        }
+        System.out.println("\nList of Animals:");
+        for (Animal animal : animalsList) {
+            System.out.println("Name: " + animal.getName() + ", Type: " + animal.getType() + ", Exhibit: " + animal.getExhibit());
+        }
+    }
+
+    // View All Staff
+    private static void viewAllStaff() {
+        if (staffList.isEmpty()) {
+            System.out.println("No staff in the zoo.");
+            return;
+        }
+        System.out.println("\nList of Staff:");
+        for (Staff staff : staffList) {
+            System.out.println("Name: " + staff.getName() + ", ID: " + staff.getStaffId() + ", Position: " + staff.getPosition());
+        }
+    }
+
+    // Assign Staff to Animal
+    private static void assignStaffToAnimal(Scanner scanner) {
+        if (animalsList.isEmpty() || staffList.isEmpty()) {
+            System.out.println("No animals or staff to assign.");
+            return;
+        }
+
+        System.out.println("\nSelect an Animal to Assign Staff To:");
+        for (int i = 0; i < animalsList.size(); i++) {
+            System.out.println((i + 1) + ". " + animalsList.get(i).getName());
+        }
+        System.out.print("Choose an animal by number: ");
+        int animalChoice = scanner.nextInt() - 1;
+        scanner.nextLine(); // consume newline
+
+        if (animalChoice < 0 || animalChoice >= animalsList.size()) {
+            System.out.println("Invalid animal selection.");
+            return;
+        }
+
+        System.out.println("\nSelect a Staff Member to Assign to the Animal:");
+        for (int i = 0; i < staffList.size(); i++) {
+            System.out.println((i + 1) + ". " + staffList.get(i).getName());
+        }
+        System.out.print("Choose a staff member by number: ");
+        int staffChoice = scanner.nextInt() - 1;
+        scanner.nextLine(); // consume newline
+
+        if (staffChoice < 0 || staffChoice >= staffList.size()) {
+            System.out.println("Invalid staff selection.");
+            return;
+        }
+
+        System.out.println("Staff " + staffList.get(staffChoice).getName() + " assigned to " + animalsList.get(animalChoice).getName());
+    }
+
+    // Load data from CSV files (if exists)
+    private static void loadData() {
+        // Load Animals
+        try (BufferedReader br = new BufferedReader(new FileReader("animals.csv"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                Animal animal = new Animal(data[0], data[1], data[2]);
+                animalsList.add(animal);
+            }
+        } catch (IOException e) {
+            // Ignore if file doesn't exist
+        }
+
+        // Load Staff
+        try (BufferedReader br = new BufferedReader(new FileReader("staff.csv"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                Staff staff = new Staff(data[0], data[1], data[2]);
+                staffList.add(staff);
+            }
+        } catch (IOException e) {
+            // Ignore if file doesn't exist
+        }
+    }
+
+    // Save data to CSV files
+    private static void saveData() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("animals.csv"))) {
+            for (Animal animal : animalsList) {
+                writer.write(animal.getName() + "," + animal.getType() + "," + animal.getExhibit() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("staff.csv"))) {
+            for (Staff staff : staffList) {
+                writer.write(staff.getName() + "," + staff.getStaffId() + "," + staff.getPosition() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
